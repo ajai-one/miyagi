@@ -8,6 +8,7 @@ using Microsoft.SemanticKernel.Memory;
 using Microsoft.SemanticKernel.Reliability;
 using Microsoft.SemanticKernel.Skills.Web;
 using Microsoft.SemanticKernel.Skills.Web.Bing;
+using Microsoft.SemanticKernel.Connectors.Memory.AzureSearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,8 +35,13 @@ builder.Services.AddSingleton<IKernel>(provider =>
         .WithLogger(NullLogger.Instance)
         .WithCompletionService(kernelSettings)
         .WithEmbeddingGenerationService(kernelSettings)
-        // Use QdrantMemoryStore instead of VolatileMemoryStore
-        .WithMemoryStorage(memoryStore)
+            // Use QdrantMemoryStore instead of VolatileMemoryStore
+            //.WithMemoryStorage(memoryStore)
+        // Use AzureSearchMemoryStore instead of VolatileMemoryStore
+        .WithMemoryStorage(new AzureSearchMemoryStore(
+             Env.Var("AZURE_SEARCH_ENDPOINT"),
+             Env.Var("AZURE_SEARCH_API_KEY")))
+
         .Configure(c => c.SetDefaultHttpRetryConfig(new HttpRetryConfig
         {
             MaxRetryCount = 2,
