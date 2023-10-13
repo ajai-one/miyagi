@@ -11,6 +11,9 @@ resourceGroupCount = 1
 1. Install Azure CLI (https://docs.microsoft.com/en-us/cli/azure/install-azure-cli), min version 2.53.0
 2. Install PowerShell (https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
 3. Change folder to `infrastructure/cli`
-4. Run `./deploy.ps1  -resourceGroupPrefix "<myagi-3-rg->" -location "<eastus>" -resourceGroupCount "<1>" -subscriptionId "your subscription id"
+4. Run
+   ```
+   ./deploy.ps1  -resourceGroupPrefix "<myagi-3-rg->" -location "<eastus>" -resourceGroupCount "<1>" -subscriptionId "<your subscription id>"
+   ```
    Note: Only subscriptionId is required, the rest are optional and will default to the values above if not provided.
 
