@@ -106,19 +106,25 @@ Recommendation service implements RAG pattern using Semantic Kernel SDK. The det
      yarn install
      yarn dev
     ```
-4. Open a browser and navigate to http://localhost:<port>. Get the port from the logs in the terminal. You should see the myagi app running locally.
+4. Open a browser and navigate to
+   ```
+     http://localhost:<port>
+   ```
+   Get the port from the logs in the terminal. You should see the myagi app running locally.
    
 ### 2.7 Run recommendation service locally
 1. Open a new terminal: Terminal -> New Terminal (or Ctrl + Shift + `)
 2. Change folder to myagi/services/recommendation-service/dotnet
 3. Run the following command to run the recommendation service locally
-   
     ```
      dotnet build
      dotnet run
-
     ```
-4. Open a browser and navigate to http://localhost:<port>/swagger/index.html. Get the port from the logs in the terminal. You should see the swagger page for the recommendation service.
+4. Open a browser and navigate to
+   ```
+     http://localhost:<port>/swagger/index.html
+   ```
+   Get the port from the logs in the terminal. You should see the swagger page for the recommendation service.
 
 ### 2.8 Explore the recommendation service
 
