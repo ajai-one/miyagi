@@ -1,6 +1,6 @@
 # Steps: Build Your Own Copilot workshop
 
-## 1. Local Environment Setup
+## 1. Setup Local Environment
 
 1. Install Visual Studio Code (https://code.visualstudio.com/download)
 2. Install the following VSCode extenstions
