@@ -89,12 +89,11 @@
         dotnet user-secrets set "AZURE_SEARCH_API_KEY" "<Azure Cognitive Search api key from previous section step 10 >"
 
    ```
-   
-### 2.5 Understanding implementation of the recommendation service
+### 2.4 Understanding implementation of the recommendation service
 
 Recommendation service implements RAG pattern using Semantic Kernel SDK. The details of the implementation are captured in the Jupyter notebook in the folder miyagi/sandbox/usecases/rag/dotnet. You can open the notebook in VSCode and run the cells to understand the implementation.
 
-### 2.6 Run myagi frontend locally
+### 2.5 Run myagi frontend locally
 
 1. Open a new terminal: Terminal -> New Terminal (or Ctrl + Shift + `)
 2. Change folder to myagi/ui/typescript
@@ -111,7 +110,7 @@ Recommendation service implements RAG pattern using Semantic Kernel SDK. The det
    ```
    Get the port from the logs in the terminal. You should see the myagi app running locally.
    
-### 2.7 Run recommendation service locally
+### 2.6 Run recommendation service locally
 1. Open a new terminal: Terminal -> New Terminal (or Ctrl + Shift + `)
 2. Change folder to myagi/services/recommendation-service/dotnet
 3. Run the following command to run the recommendation service locally
@@ -125,7 +124,7 @@ Recommendation service implements RAG pattern using Semantic Kernel SDK. The det
    ```
    Get the port from the logs in the terminal. You should see the swagger page for the recommendation service.
 
-### 2.8 Explore the recommendation service
+### 2.7 Explore the recommendation service
 
 Go back to the ui -> click personalize button -> select financial advisor. You should see the recommendations from the recommendation service in the Top Stocks widget.
 
