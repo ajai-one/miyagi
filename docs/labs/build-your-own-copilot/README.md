@@ -26,7 +26,6 @@
    
    ```
     git clone https://github.com/ajai-d/miyagi.git
-   
    ```
 ### 2.1 Provision Azure Services required for the workshop
 
