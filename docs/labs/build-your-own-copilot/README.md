@@ -56,10 +56,17 @@
 3. You will setup the values for the variables in the workshop [ this will be updated later]
 4. Create a new file named appsettings.json in myagi/services/recommendation-service/dotnet
 5. Copy paste the contents of appsettings.json.example into appsettings.json and save the file
-6. Update appsettings.json with the OpenAI Endpoint and the Api key for the Open AI Service
+6. Update appsettings.json with the values for the variables below. You can get the values from the Azure Portal.
    > Go to Azure Portal -> Resource Groups -> Select the resource group you created in step 3 of the previous section -> Select the Open AI resource -> Select Keys and Endpoint
 
-   > Copy the values of the Language API endpoint and the key1 into "endpoint" and "apikey" im the appsettings.json file and save the file   
+   > Copy the values of the Language API endpoint and the key1 into "endpoint" and "apikey" im the appsettings.json file and save the file
+
+   > Go back to your Open AI resource -> Overview -> Click Go to Azure OpenAI Studio -> Deployments
+
+   > Copy the value of the deployment name for gpt-35-turbo model and paste it into the appsettings.json file as the value of the variable "deploymentOrModelId"
+
+   > Copy the value of the deployment name for text-embedding-ada-002 model and paste it into the appsettings.json file as the value of the variable "embeddingDeploymentOrModelId"
+
 7. Create a new file named .env in myagi/sandbox/usecases/rag/dotnet
 8. Copy paste the contents of .env.local.example into .env and save the file
 9. Copy the values of OPenAI endpoint and key1 from step 6 into the .env file and save the file
@@ -77,14 +84,14 @@
    ```
         dotnet user-secrets set "USE_OPEN_AI" "False"
         dotnet user-secrets set "serviceType" "AzureOpenAI"
-        dotnet user-secrets set "AZURE_OPENAI_SERVICE_ID" "<get the name of the Open AI resource from the Azure Portal>"
+        dotnet user-secrets set "AZURE_OPENAI_SERVICE_ID" "gpt-35-turbo"
         dotnet user-secrets set "AZURE_OPENAI_KEY" "<Open AI api key from previous section step6 >"
         dotnet user-secrets set "AZURE_OPENAI_ENDPOINT" "<Open AI end point from previous section step 6 >"
         dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_SERVICE_ID" "text-embedding-ada-002"
         dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_KEY" " <Open AI api key from previous section step6 > "
         dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_ENDPOINT" "<Open AI end point from previous section  step 6 >"
-        dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME" "text-embedding-ada-002"
-        dotnet user-secrets set "AZURE_OPENAI_DEPLOYMENT_NAME" "gpt-35-turbo"
+        dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME" "<Deployment name for text-embedding-ada-002 model from previous section step 6 >"
+        dotnet user-secrets set "AZURE_OPENAI_DEPLOYMENT_NAME" "<Deployment name for gpt-35-turbo model from previous section step 6>"
         dotnet user-secrets set "apiKey" "<Open AI api key from previous section step6 >"
         dotnet user-secrets set "AZURE_SEARCH_ENDPOINT" "<Azure Cognitive Search endpoint from previous section step 10 >"
         dotnet user-secrets set "AZURE_SEARCH_API_KEY" "<Azure Cognitive Search api key from previous section step 10 >"
