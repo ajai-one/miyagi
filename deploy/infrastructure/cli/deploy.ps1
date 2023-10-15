@@ -1,12 +1,9 @@
 param (
-    [string]$resourceGroupPrefix = "myagi-1-rg-",
+    [string]$resourceGroupPrefix = "myagi-1",
     [string]$location = "eastus",
     [string]$resourceGroupCount = 1,
     [string]$subscriptionId = "SubscriptionId is required"
 )
-
-# random number suffix
-$randomNumber = Get-Random -Minimum 1000 -Maximum 9999
 
 # print variables
 
@@ -27,6 +24,7 @@ $skipCompletionModelDeployment = "false"
 $skipcognitiveSearch = "false"
 
 
+
 # create resource groups in a loop for rgIndex
 # if skipRg is true, skip creating resource group
 
@@ -36,8 +34,8 @@ if ($skipRg -eq "true") {
 else {
 
     for ($i = 1; $i -le $rgIndex; $i++) {
-        Write-Host "Creating resource group $resourceGroupPrefix$i in $location"
-        az group create --name "$resourceGroupPrefix$i" --location $location
+        Write-Host "Creating resource group $resourceGroupPrefix-rg-$i in $location"
+        az group create --name "$resourceGroupPrefix-rg-$i" --location $location
     }
 }
    
@@ -49,11 +47,11 @@ for ($i = 1; $i -le $rgIndex; $i++) {
         Write-Host "Skipping OpenAI resource creation"
     }
     else {
-        Write-Host "Creating Azure Open AI service resource named MyOpenAIResource$randomNumber-$i in $resourceGroupPrefix$i"
+        Write-Host "Creating Azure Open AI service resource named $resourceGroupPrefix-OpenAIService-$i in $resourceGroupPrefix-rg-$i"
     
         az cognitiveservices account create `
-            --name "MyOpenAIResource$randomNumber-$i" `
-            --resource-group "$resourceGroupPrefix$i" `
+            --name "$resourceGroupPrefix-OpenAIService-$i" `
+            --resource-group "$resourceGroupPrefix-rg-$i" `
             --location $location `
             --kind "OpenAI" `
             --sku "s0" `
@@ -68,12 +66,12 @@ for ($i = 1; $i -le $rgIndex; $i++) {
     else {
         # deploy embedding model
 
-        Write-Host "Deploying embedding model MyEmbeddingModel$randomNumber-$i"
+        Write-Host "Deploying embedding model $resourceGroupPrefix-EmbeddingModel-$i"
 
         az cognitiveservices account deployment create `
-            --name "MyOpenAIResource$randomNumber-$i" `
-            --resource-group  "$resourceGroupPrefix$i" `
-            --deployment-name "MyEmbeddingModel$randomNumber-$i" `
+            --name "$resourceGroupPrefix-OpenAIService-$i" `
+            --resource-group  "$resourceGroupPrefix-rg-$i" `
+            --deployment-name "$resourceGroupPrefix-EmbeddingModel-$i" `
             --model-name text-embedding-ada-002 `
             --model-version "2"  `
             --model-format "OpenAI" `
@@ -88,14 +86,14 @@ for ($i = 1; $i -le $rgIndex; $i++) {
     else {
         # deploy completion model
 
-        Write-Host "Deploying completion model MyCompletionModel$randomNumber-$i"
+        Write-Host "Deploying completion model $resourceGroupPrefix-CompletionModel-$i"
 
         az cognitiveservices account deployment create `
-            --name "MyOpenAIResource$randomNumber-$i" `
-            --resource-group  "$resourceGroupPrefix$i" `
-            --deployment-name "MyCompletionModel$randomNumber-$i" `
+            --name "$resourceGroupPrefix-OpenAIService-$i" `
+            --resource-group  "$resourceGroupPrefix-rg-$i" `
+            --deployment-name "$resourceGroupPrefix-CompletionModel-$i" `
             --model-name "gpt-35-turbo" `
-            --model-version "0301"  `
+            --model-version "0613"  `
             --model-format "OpenAI" `
       
     }
@@ -107,12 +105,12 @@ for ($i = 1; $i -le $rgIndex; $i++) {
     }
     else {
         
-        Write-Host "Creating cognitive search service mycognitivesearchservice$randomNumber-$i in $resourceGroupPrefix$i"
+        Write-Host "Creating cognitive search service $resourceGroupPrefix-ACS-$i in $resourceGroupPrefix-rg-$i"
         
         az deployment group create `
-        --resource-group "$resourceGroupPrefix$i" `
+        --resource-group "$resourceGroupPrefix-rg-$i" `
         --template-file "bicep/search-service.bicep" `
-        --parameters "searchServiceName=mycognitivesearchservice$randomNumber-$i"
+        --parameters "searchServiceName=$resourceGroupPrefix-acs-$i"
             
      
     }
