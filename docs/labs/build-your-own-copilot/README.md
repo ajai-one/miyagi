@@ -59,7 +59,7 @@
 6. Update appsettings.json with the values for the variables below. You can get the values from the Azure Portal.
    > Go to Azure Portal -> Resource Groups -> Select the resource group you created in step 3 of the previous section -> Select the Open AI resource -> Select Keys and Endpoint
 
-   > Copy the values of the Language API endpoint and the key1 into "endpoint" and "apikey" im the appsettings.json file and save the file
+   > Copy the values of the Language API endpoint and the key1 into "endpoint" and "apikey" in the appsettings.json file and save the file
 
    > Go back to your Open AI resource -> Overview -> Click Go to Azure OpenAI Studio -> Deployments
 
