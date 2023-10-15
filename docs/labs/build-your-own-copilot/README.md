@@ -79,7 +79,7 @@
 
 1. Open a new terminal: Terminal -> New Terminal (or Ctrl + Shift + `)
 2. Change folder to myagi/services/recommendation-service/dotnet
-3. Run the following command to set the secrets for the recommendation service. You will need to provide the values for the variables below. You can get the values from the .env file you created in the previous section.
+3. Run the following command to set the secrets for the recommendation service. You will need to provide the values for the variables below.
    
    ```
         dotnet user-secrets set "USE_OPEN_AI" "False"
