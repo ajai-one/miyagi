@@ -56,8 +56,9 @@
 3. You will setup the values for the variables in the workshop [ this will be updated later]
 4. Create a new file named appsettings.json in myagi/services/recommendation-service/dotnet
 5. Copy paste the contents of appsettings.json.example into appsettings.json and save the file
-6. Get the OpenAI Endpoint and the Api key for the Open AI Service you created in step 3 of the previous section.
+6. Update appsettings.json with the OpenAI Endpoint and the Api key for the Open AI Service
    > Go to Azure Portal -> Resource Groups -> Select the resource group you created in step 3 of the previous section -> Select the Open AI resource -> Select Keys and Endpoint
+   
    > Copy the values of the Language API endpoint and the key1 into "endpoint" and "apikey" im the appsettings.json file and save the file   
 7. Create a new file named .env in myagi/sandbox/usecases/rag/dotnet
 8. Copy paste the contents of .env.local.example into .env and save the file
