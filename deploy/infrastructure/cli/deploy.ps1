@@ -1,15 +1,12 @@
-# set variables
-# $resourceGroupPrefix = "myagi-2-rg-"
-# $location = "eastus"
-# $rgIndex = 1
-# $subscriptionId = "8e620752-fda6-4e8a-964f-16ba80e797ae"
-
 param (
     [string]$resourceGroupPrefix = "myagi-1-rg-",
     [string]$location = "eastus",
     [string]$resourceGroupCount = 1,
     [string]$subscriptionId = "SubscriptionId is required"
 )
+
+# random number suffix
+$randomNumber = Get-Random -Minimum 1000 -Maximum 9999
 
 # print variables
 
@@ -52,11 +49,12 @@ for ($i = 1; $i -le $rgIndex; $i++) {
         Write-Host "Skipping OpenAI resource creation"
     }
     else {
-        Write-Host "Creating Azure Open AI service resource in $resourceGroupPrefix$i"
+        Write-Host "Creating Azure Open AI service resource named MyOpenAIResource$randomNumber-$i in $resourceGroupPrefix$i"
     
         az cognitiveservices account create `
-            --name "MyOpenAIResource-$i" `
+            --name "MyOpenAIResource$randomNumber-$i" `
             --resource-group "$resourceGroupPrefix$i" `
+            --location $location `
             --kind "OpenAI" `
             --sku "s0" `
             --subscription $subscriptionId 
@@ -70,12 +68,12 @@ for ($i = 1; $i -le $rgIndex; $i++) {
     else {
         # deploy embedding model
 
-        Write-Host "Deploying embedding model "MyEmbeddingModel$i""
+        Write-Host "Deploying embedding model MyEmbeddingModel$randomNumber-$i"
 
         az cognitiveservices account deployment create `
-            --name "MyOpenAIResource-$i" `
+            --name "MyOpenAIResource$randomNumber-$i" `
             --resource-group  "$resourceGroupPrefix$i" `
-            --deployment-name "MyEmbeddingModel$i" `
+            --deployment-name "MyEmbeddingModel$randomNumber-$i" `
             --model-name text-embedding-ada-002 `
             --model-version "2"  `
             --model-format "OpenAI" `
@@ -90,12 +88,12 @@ for ($i = 1; $i -le $rgIndex; $i++) {
     else {
         # deploy completion model
 
-        Write-Host "Deploying completion model "MyCompletionModel$i""
+        Write-Host "Deploying completion model MyCompletionModel$randomNumber-$i"
 
         az cognitiveservices account deployment create `
-            --name "MyOpenAIResource-$i" `
+            --name "MyOpenAIResource$randomNumber-$i" `
             --resource-group  "$resourceGroupPrefix$i" `
-            --deployment-name "MyCompletionModel$i" `
+            --deployment-name "MyCompletionModel$randomNumber-$i" `
             --model-name "gpt-35-turbo" `
             --model-version "0301"  `
             --model-format "OpenAI" `
@@ -113,8 +111,8 @@ for ($i = 1; $i -le $rgIndex; $i++) {
         
         az deployment group create `
         --resource-group "$resourceGroupPrefix$i" `
-        --template-file "./bicep/search-service.bicep" `
-        --parameters "searchServiceName=mycognitivesearchservice-$i"
+        --template-file "bicep/search-service.bicep" `
+        --parameters "searchServiceName=mycognitivesearchservice$randomNumber-$i"
             
      
     }
