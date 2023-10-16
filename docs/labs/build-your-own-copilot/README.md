@@ -84,22 +84,17 @@
    ```
         dotnet user-secrets set "USE_OPEN_AI" "False"
         dotnet user-secrets set "serviceType" "AzureOpenAI"
-        dotnet user-secrets set "AZURE_OPENAI_SERVICE_ID" "gpt-35-turbo"
-        dotnet user-secrets set "AZURE_OPENAI_KEY" "<Open AI api key from previous section step6 >"
-        dotnet user-secrets set "AZURE_OPENAI_ENDPOINT" "<Open AI end point from previous section step 6 >"
-        dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_SERVICE_ID" "text-embedding-ada-002"
-        dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_KEY" " <Open AI api key from previous section step6 > "
-        dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_ENDPOINT" "<Open AI end point from previous section  step 6 >"
-        dotnet user-secrets set "AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT_NAME" "<Deployment name for text-embedding-ada-002 model from previous section step 6 >"
-        dotnet user-secrets set "AZURE_OPENAI_DEPLOYMENT_NAME" "<Deployment name for gpt-35-turbo model from previous section step 6>"
-        dotnet user-secrets set "apiKey" "<Open AI api key from previous section step6 >"
         dotnet user-secrets set "AZURE_SEARCH_ENDPOINT" "<Azure Cognitive Search endpoint from previous section step 10 >"
         dotnet user-secrets set "AZURE_SEARCH_API_KEY" "<Azure Cognitive Search api key from previous section step 10 >"
+        dotnet user-secrets set "BING_API_KEY" "<Your Bing API Key>"
+        dotnet user-secrets set "MEMORY_COLLECTION" "miyagi-embeddings"
+        dotnet user-secrets set "QDRANT_PORT" "6333"
+        dotnet user-secrets set "QDRANT_ENDPOINT" "<Qdrant endpoint>"
 
    ```
 ### 2.4 Understanding implementation of the recommendation service
 
-Recommendation service implements RAG pattern using Semantic Kernel SDK. The details of the implementation are captured in the Jupyter notebook in the folder miyagi/sandbox/usecases/rag/dotnet. You can open the notebook in VSCode and run the cells to understand the implementation.
+Recommendation service implements RAG pattern using Semantic Kernel SDK. The details of the implementation are captured in the Jupyter notebook in the folder miyagi/sandbox/usecases/rag/dotnet. You can open the notebook in VSCode and run the cells to understand the implementation. Select kernel as .NET Interactive in the top right corner of the notebook.
 
 ### 2.5 Run myagi frontend locally
 
