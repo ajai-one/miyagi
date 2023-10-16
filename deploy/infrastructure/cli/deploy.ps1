@@ -112,7 +112,7 @@ for ($i = 1; $i -le $rgIndex; $i++) {
         --template-file "bicep/search-service.bicep" `
         --parameters "searchServiceName=$resourceGroupPrefix-acs-$i"
             
-     
+
     }
 
  
