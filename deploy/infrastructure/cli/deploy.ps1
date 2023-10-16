@@ -105,7 +105,7 @@ for ($i = 1; $i -le $rgIndex; $i++) {
     }
     else {
         
-        Write-Host "Creating cognitive search service $resourceGroupPrefix-ACS-$i in $resourceGroupPrefix-rg-$i"
+        Write-Host "Creating cognitive search service $resourceGroupPrefix-acs-$i in $resourceGroupPrefix-rg-$i"
         
         az deployment group create `
         --resource-group "$resourceGroupPrefix-rg-$i" `
